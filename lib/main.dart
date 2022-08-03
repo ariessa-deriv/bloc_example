@@ -37,7 +37,7 @@ class _HomePageState extends State<HomePage> {
         title: Text('Flutter Demo'),
         centerTitle: true,
       ),
-      body: BlocListener<CounterCubit, int>(
+      body: BlocConsumer<CounterCubit, int>(
         bloc: cubit,
         listener: (context, state) {
           const snackBar = SnackBar(
@@ -48,28 +48,24 @@ class _HomePageState extends State<HomePage> {
             ScaffoldMessenger.of(context).showSnackBar(snackBar);
           }
         },
-        child: BlocBuilder<CounterCubit, int>(
-          bloc: cubit,
-          builder: (BuildContext context, state) {
-            return Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    '$state',
-                    style:
-                        TextStyle(fontSize: 100, fontWeight: FontWeight.bold),
-                  ),
-                  ElevatedButton(
-                      onPressed: () {
-                        cubit.increment();
-                      },
-                      child: const Text('Increment'))
-                ],
-              ),
-            );
-          },
-        ),
+        builder: (BuildContext context, state) {
+          return Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  '$state',
+                  style: TextStyle(fontSize: 100, fontWeight: FontWeight.bold),
+                ),
+                ElevatedButton(
+                    onPressed: () {
+                      cubit.increment();
+                    },
+                    child: const Text('Increment'))
+              ],
+            ),
+          );
+        },
       ),
     );
   }
