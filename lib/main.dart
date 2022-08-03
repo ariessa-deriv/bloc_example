@@ -61,7 +61,17 @@ class _HomePageState extends State<HomePage> {
                     onPressed: () {
                       cubit.increment();
                     },
-                    child: const Text('Increment'))
+                    child: const Text('Increment')),
+                ElevatedButton(
+                    onPressed: () {
+                      cubit.decrement();
+                    },
+                    child: const Text('Decrement')),
+                ElevatedButton(
+                    onPressed: () {
+                      cubit.restart();
+                    },
+                    child: const Text('Restart'))
               ],
             ),
           );
